@@ -67,8 +67,8 @@ class LoginPage {
       }, 2000);
     });
 
-    const setPopUp = ({ mainContainer, message, status, title }) => {
-      ModalComponents.popUpAlert({ mainContainer, message, status, title })
+    const setPopUp = ({ mainContainer, message, status, title, showCancelButton = false }) => {
+      ModalComponents.popUpAlert({ mainContainer, message, status, title, showCancelButton })
       const closeButton = maincontainer.querySelector(".closeButton");
       closeButton.addEventListener("click", () => {
         ModalComponents.closePopUp(maincontainer);

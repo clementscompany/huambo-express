@@ -3,7 +3,9 @@ export class MenuApp {
     const menuItems = [
       { icon: 'bi-grid-fill', label: 'Dashboard', route: '/dashboard' },
       { icon: 'bi-geo-alt-fill', label: 'Rotas', route: '/rotas' },
+      { icon: 'bi-person-badge-fill', label: 'Motoristas', route: '/motoristas' },
       { icon: 'bi-bus-front-fill', label: 'Autocarros', route: '/autocarros' },
+      { icon: 'bi-map-fill', label: 'Viagens', route: '/viagens' },
       { icon: 'bi-people-fill', label: 'Clientes', route: '/clientes' },
       { icon: 'bi-clock-history', label: 'Reservas', route: '/reservas' }
     ];

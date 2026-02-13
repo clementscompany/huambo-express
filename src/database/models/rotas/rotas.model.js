@@ -2,7 +2,7 @@ import { DB } from "../../connection/connection.db.js";
 
 export class RotasModel {
   static getAll() {
-    const sql = "SELECT * FROM rotas";
+    const sql = "SELECT * FROM rotas ORDER BY id DESC";
     return new Promise((resolve, reject) => {
       DB.query(sql, (err, result) => {
         if (err) reject(err);

@@ -22,7 +22,7 @@ export class ModalComponents {
     }
   }
 
-  static popUpAlert({ title, message, status, mainContainer, closePopUpButton }) {
+  static popUpAlert({ title, message, status, mainContainer, showCancelButton = false }) {
 
     const currentCard = mainContainer.querySelector(".popUpModal");
     if (currentCard) {
@@ -34,12 +34,14 @@ export class ModalComponents {
     container.innerHTML = `
       <div class="contentPopUp">
           <div class="topCcontent ${status}">
-            <i class="bi bi-check-circle"></i>
+            <i class="bi bi-${status === "success" ? "check-circle" : "exclamation-triangle"}"></i>
           <h4>${title ?? "Sucesso"}</h4>
           <p>${message}</p>
         </div>
 
-      <button class="closeButton">ok</button>
+      <div class="buttonsPopUp">
+        <button class="closeButton" id="${showCancelButton ? "confirmPopUpButton" : "closePopUpButton"}">ok</button>
+        ${showCancelButton ? `<button class="cancelButton" id="cancelPopUpButton">Cancelar</button>` : ""}
       </div>
     `
 

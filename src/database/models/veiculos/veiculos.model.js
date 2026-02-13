@@ -27,4 +27,43 @@ export class VeiculosModel {
       });
     });
   }
+
+  static getById(id) {
+    const sql = "SELECT * FROM veiculos WHERE id = ?";
+    return new Promise((resolve, reject) => {
+      DB.query(sql, [id], (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result[0]);
+        }
+      });
+    });
+  }
+
+  static update(id, veiculo) {
+    const sql = "UPDATE veiculos SET ? WHERE id = ?";
+    return new Promise((resolve, reject) => {
+      DB.query(sql, [veiculo, id], (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  static delete(id) {
+    const sql = "DELETE FROM veiculos WHERE id = ?";
+    return new Promise((resolve, reject) => {
+      DB.query(sql, [id], (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
 }

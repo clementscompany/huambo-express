@@ -49,7 +49,7 @@ export class LoginScreen {
           </div>
           
            <div class="submitButton">
-            <button id="loginButton">Entrar</button>
+            <button id="loginButton" class="btn btn-primary" style="width: 100%; justify-content: center;">Entrar</button>
            </div>
 
           <div class="accessHelp">

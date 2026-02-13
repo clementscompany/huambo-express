@@ -11,12 +11,20 @@ export class RotasScreen {
           <div class="content">
             <div class="rota-header">
               <h2>Gestão de Rotas</h2>
-              <button type="button" id="novaRotaButton" class="rota-new-button">
+              <button type="button" id="novaRotaButton" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i>
                 <span>Cadastrar Nova Rota</span>
               </button>
             </div>
           </div>
+          <div id="formAdd"></div>
+            <div class="inputBox" id="searchBox">
+              <label for="search">
+              <i class="bi bi-search"></i>
+              </label>
+              <input type="search" placeholder="Buscar rota..." name="search" id="search">
+            </div> 
+          <div id="tableRoute"></div>
         </div>
       </div>
     

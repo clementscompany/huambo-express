@@ -3,6 +3,15 @@ import UserModel from "../../database/models/users/user.model.js";
 import { JwtMiddleware } from "../../middleware/jwt/jwt.js";
 
 export class UserController {
+  static async getAll(req, res) {
+    try {
+      const users = await UserModel.findAll();
+      res.status(200).json({ success: true, data: users });
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao listar usuários", error: error.message });
+    }
+  }
+
   static async getPerfilData(req, res) {
     try {
 
@@ -38,6 +47,16 @@ export class UserController {
 
     } catch (error) {
       res.status(500).json({ message: "Erro no servidor", error: error.message });
+    }
+  }
+
+  static async remove(req, res) {
+    try {
+      const { id } = req.params;
+      await UserModel.deactivate(id);
+      res.status(200).json({ success: true, message: "Usuário desativado com sucesso" });
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao desativar usuário", error: error.message });
     }
   }
 }

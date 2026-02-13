@@ -44,7 +44,7 @@ export const createTableRotas = `
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     origem VARCHAR(100) NOT NULL,
     destino VARCHAR(100) NOT NULL,
-    distancia_km DECIMAL(6,2),
+    distancia_km  VARCHAR(100),
     duracao_minutos INT,
     status VARCHAR(20)
       CHECK (status IN ('ativa','inativa'))

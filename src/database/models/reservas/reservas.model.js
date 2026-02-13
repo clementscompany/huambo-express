@@ -11,6 +11,25 @@ export class ReservasModel {
     });
   }
 
+  static listarTodasDetalhadas() {
+    const sql = `
+      SELECT r.*, v.data, v.hora, v.preco, 
+             u.nome as usuario_nome, u.telefone as usuario_telefone,
+             o.origem, o.destino
+      FROM reservas r
+      JOIN viagens v ON r.viagem_id = v.id
+      JOIN rotas o ON v.rota_id = o.id
+      JOIN usuarios u ON r.usuario_id = u.id
+      ORDER BY r.criado_em DESC
+    `;
+    return new Promise((resolve, reject) => {
+      DB.query(sql, (err, results) => {
+        if (err) reject(err);
+        else resolve(results);
+      });
+    });
+  }
+
   static listarPorUsuario(usuarioId) {
     const sql = `
       SELECT r.*, v.data, v.hora, o.origem, o.destino 
