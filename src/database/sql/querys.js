@@ -32,6 +32,12 @@ export const createTableVeiculos = `
     nome VARCHAR(50),
     matricula VARCHAR(20) UNIQUE NOT NULL,
     modelo VARCHAR(50),
+    ar_condicionado BOOLEAN DEFAULT FALSE,
+    wifi BOOLEAN DEFAULT FALSE,
+    mini_bar BOOLEAN DEFAULT FALSE,
+    carregador_usb BOOLEAN DEFAULT FALSE,
+    senha_wifi VARCHAR(100),
+    categoria VARCHAR(20),
     capacidade INT NOT NULL,
     ativo BOOLEAN DEFAULT TRUE,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -45,7 +51,7 @@ export const createTableRotas = `
     origem VARCHAR(100) NOT NULL,
     destino VARCHAR(100) NOT NULL,
     distancia_km  VARCHAR(100),
-    duracao_minutos INT,
+    duracao_horas INT,
     status VARCHAR(20)
       CHECK (status IN ('ativa','inativa'))
       DEFAULT 'ativa',

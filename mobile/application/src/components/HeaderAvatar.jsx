@@ -3,7 +3,7 @@ import theme from "../app/theme/theme";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import avatar_image from "../assets/image/image.png";
+import avatar_image from "../assets/image/avatar2.png";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 export default function HeaderAvater() {
   const { currentTheme } = useContext(ThemeContext);
@@ -40,10 +40,12 @@ export default function HeaderAvater() {
     message: {
       fontSize: 14,
       color: theme(currentTheme).colors.text2,
+      fontFamily: "Inter_400Regular",
     },
     name: {
       fontSize: 18,
       color: theme(currentTheme).colors.text,
+      fontFamily: "Inter_400Regular"
     },
     buttonNotification: {
       position: "relative",
@@ -69,6 +71,7 @@ export default function HeaderAvater() {
       textAlign: "center",
       backgroundColor: theme(currentTheme).colors.error,
       borderRadius: 50,
+      fontFamily: "Inter_400Regular",
     }
   })
 

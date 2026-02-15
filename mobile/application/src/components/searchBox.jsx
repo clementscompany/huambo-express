@@ -4,18 +4,20 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import theme from "../app/theme/theme";
 
-export default function SearchBox() {
+export default function SearchBox({ onSearch }) {
   const { currentTheme } = useContext(ThemeContext);
 
   const style = StyleSheet.create({
     container: {
       backgroundColor: theme(currentTheme).colors.card,
-      borderRadius: 22,
+      borderRadius: 14,
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
       paddingLeft: 14,
       elevation: 2,
+      borderWidth: .5,
+      borderColor: theme(currentTheme).colors.border,
     },
     input: {
       flex: 1,
@@ -25,7 +27,8 @@ export default function SearchBox() {
       borderLeftWidth: 1,
       marginVertical: 12,
       marginLeft: 12,
-      fontFamily: "Poppins_400Regular",
+      fontFamily: "Inter_400Regular",
+      color: theme(currentTheme).colors.text,
     },
   })
   return (
@@ -35,6 +38,7 @@ export default function SearchBox() {
         placeholderTextColor={theme(currentTheme).colors.text2}
         keyboardAppearance={currentTheme}
         inputMode="search"
+        onChangeText={onSearch}
       />
     </View>
   )

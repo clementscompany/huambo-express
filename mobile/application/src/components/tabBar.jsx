@@ -5,6 +5,7 @@ import theme from "../app/theme/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AvatarIcon from "./AvatarIcon";
 
 export default function TabBar({ state, descriptors, navigation }) {
   const { currentTheme } = useContext(ThemeContext);
@@ -18,8 +19,8 @@ export default function TabBar({ state, descriptors, navigation }) {
           alignItems: "center",
           justifyContent: "space-between",
           backgroundColor: theme(currentTheme).colors.card,
-          marginHorizontal: 12,
-          borderRadius: 16,
+          marginHorizontal: 6,
+          borderRadius: 14,
           paddingVertical: 10,
           elevation: 2,
         }}
@@ -33,12 +34,12 @@ export default function TabBar({ state, descriptors, navigation }) {
           };
 
 
-          const ICONS = (color = theme(currentTheme).colors.text2) => {
+          const ICONS = (color = theme(currentTheme).colors.text2, foccused) => {
             return {
               0: <Ionicons name="home" size={22} color={color} />,
-              1: <Ionicons name="person" size={22} color={color} />,
+              1: <Ionicons name="heart-circle-outline" size={22} color={color} />,
               2: <MaterialCommunityIcons name="ticket-confirmation-outline" size={22} color={color} />,
-              3: <Ionicons name="heart-circle-outline" size={22} color={color} />
+              3: <AvatarIcon foccused={foccused} />
             }
           }
 
@@ -49,7 +50,7 @@ export default function TabBar({ state, descriptors, navigation }) {
               style={{ flex: 1, alignItems: "center" }}
             >
               {
-                ICONS(isFocused ? theme(currentTheme).colors.primary : theme(currentTheme).colors.text2)[index]
+                ICONS(isFocused ? theme(currentTheme).colors.primary : theme(currentTheme).colors.text2, isFocused)[index]
               }
               <Text
                 style={{

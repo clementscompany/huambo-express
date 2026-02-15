@@ -28,7 +28,7 @@ export class SearchableSelect {
     this.trigger = document.createElement('div');
     this.trigger.className = 'searchable-select-trigger';
     this.updateTriggerLabel();
-    
+
     // Create dropdown
     this.dropdown = document.createElement('div');
     this.dropdown.className = 'searchable-select-dropdown';
@@ -53,21 +53,21 @@ export class SearchableSelect {
 
     this.renderOptions(this.options);
     this.bindEvents();
-    
+
     // Check if original select has a value
     if (this.originalSelect.value) {
-        this.selectValue(this.originalSelect.value, false);
+      this.selectValue(this.originalSelect.value, false);
     }
   }
 
   renderOptions(options) {
     this.optionsList.innerHTML = '';
     if (options.length === 0) {
-        const li = document.createElement('li');
-        li.className = 'searchable-select-option no-results';
-        li.textContent = 'Nenhum resultado encontrado';
-        this.optionsList.appendChild(li);
-        return;
+      const li = document.createElement('li');
+      li.className = 'searchable-select-option no-results';
+      li.textContent = 'Nenhum resultado encontrado';
+      this.optionsList.appendChild(li);
+      return;
     }
 
     options.forEach(opt => {
@@ -76,39 +76,39 @@ export class SearchableSelect {
       li.dataset.value = opt.value;
       li.textContent = opt.label;
       if (this.selectedValue === opt.value) {
-          li.classList.add('selected');
+        li.classList.add('selected');
       }
-      
+
       li.addEventListener('click', (e) => {
-          e.stopPropagation();
-          this.selectValue(opt.value);
-          this.close();
+        e.stopPropagation();
+        this.selectValue(opt.value);
+        this.close();
       });
-      
+
       this.optionsList.appendChild(li);
     });
   }
 
   bindEvents() {
     this.trigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.toggle();
+      e.stopPropagation();
+      this.toggle();
     });
 
     this.searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = this.options.filter(opt => 
-            opt.label.toLowerCase().includes(term)
-        );
-        this.renderOptions(filtered);
+      const term = e.target.value.toLowerCase();
+      const filtered = this.options.filter(opt =>
+        opt.label.toLowerCase().includes(term)
+      );
+      this.renderOptions(filtered);
     });
 
     this.searchInput.addEventListener('click', (e) => e.stopPropagation());
 
     document.addEventListener('click', (e) => {
-        if (!this.wrapper.contains(e.target)) {
-            this.close();
-        }
+      if (!this.wrapper.contains(e.target)) {
+        this.close();
+      }
     });
   }
 
@@ -133,41 +133,41 @@ export class SearchableSelect {
   }
 
   selectValue(value, triggerChange = true) {
-      this.selectedValue = value;
-      this.originalSelect.value = value;
-      this.updateTriggerLabel();
-      
-      // Update visual selection
-      const options = this.optionsList.querySelectorAll('.searchable-select-option');
-      options.forEach(opt => {
-          if (opt.dataset.value == value) opt.classList.add('selected');
-          else opt.classList.remove('selected');
-      });
+    this.selectedValue = value;
+    this.originalSelect.value = value;
+    this.updateTriggerLabel();
 
-      if (triggerChange && this.config.onChange) {
-          this.config.onChange(value);
-      }
-      
-      // Trigger change event on original select for compatibility
-      if (triggerChange) {
-          const event = new Event('change', { bubbles: true });
-          this.originalSelect.dispatchEvent(event);
-      }
+    // Update visual selection
+    const options = this.optionsList.querySelectorAll('.searchable-select-option');
+    options.forEach(opt => {
+      if (opt.dataset.value == value) opt.classList.add('selected');
+      else opt.classList.remove('selected');
+    });
+
+    if (triggerChange && this.config.onChange) {
+      this.config.onChange(value);
+    }
+
+    // Trigger change event on original select for compatibility
+    if (triggerChange) {
+      const event = new Event('change', { bubbles: true });
+      this.originalSelect.dispatchEvent(event);
+    }
   }
 
   updateTriggerLabel() {
-      const selectedOption = this.options.find(o => o.value == this.selectedValue) || 
-                             this.options.find(o => o.value == this.originalSelect.value);
-      
-      this.trigger.textContent = selectedOption ? selectedOption.label : this.config.placeholder;
-      this.trigger.classList.toggle('has-value', !!selectedOption);
+    const selectedOption = this.options.find(o => o.value == this.selectedValue) ||
+      this.options.find(o => o.value == this.originalSelect.value);
+
+    this.trigger.textContent = selectedOption ? selectedOption.label : this.config.placeholder;
+    this.trigger.classList.toggle('has-value', !!selectedOption);
   }
-  
+
   // Method to manually set options later
   setOptions(newOptions) {
-      this.options = newOptions;
-      this.renderOptions(newOptions);
-      // Re-evaluate selected value label
-      this.updateTriggerLabel();
+    this.options = newOptions;
+    this.renderOptions(newOptions);
+    // Re-evaluate selected value label
+    this.updateTriggerLabel();
   }
 }

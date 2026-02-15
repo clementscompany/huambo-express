@@ -33,6 +33,7 @@ export class ViagensPage {
     mainContainer.innerHTML = ViagensScreen.base();
   }
 
+  //// Botoes do cabecalho e acoes gerais
   bindHeaderActions(mainContainer) {
     const newButton = mainContainer.querySelector("#novaViagemButton");
     if (newButton) {
@@ -131,6 +132,8 @@ export class ViagensPage {
     });
   }
 
+
+  //// Criar, Editar, Excluir vovas Viagens 
   startCreate(mainContainer) {
     this.clearForm(mainContainer);
     this.loadFormOptions(mainContainer);

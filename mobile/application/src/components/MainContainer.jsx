@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import theme from "../app/theme/theme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function MainContainer({ children }) {
+export default function MainContainer({ children, style }) {
   const { currentTheme } = useContext(ThemeContext);
 
   const isLight = currentTheme === "light";
@@ -24,7 +24,7 @@ export default function MainContainer({ children }) {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { ...style }]}>
       <StatusBar
         style={isLight ? "dark" : "light"}
         translucent

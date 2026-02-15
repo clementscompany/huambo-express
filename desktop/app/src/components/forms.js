@@ -32,9 +32,9 @@ export class Forms {
             <div class="form-group">
               <label for="duracao_minutos">
                 <i class="bi bi-clock"></i>
-                <span>Tempo (min)</span>
+                <span>Tempo (horas)</span>
               </label>
-              <input type="number" placeholder="Tempo..." name="duracao_minutos" id="duracao_minutos" required>
+              <input type="number" placeholder="Tempo..." name="duracao_horas" id="duracao_minutos" required>
             </div>
           </div>
 

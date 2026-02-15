@@ -16,6 +16,9 @@ export default function HomeLayout() {
         sceneContainerStyle: {
           backgroundColor: theme(currentTheme).colors.background,
         },
+        tabBarStyle: {
+          backgroundColor: theme(currentTheme).colors.background,
+        }
       }}
       tabBar={(props) => <TabBar {...props} />}
     >
@@ -26,21 +29,26 @@ export default function HomeLayout() {
           tabBarLabel: "Início",
         }}
       />
+
+
       <Tabs.Screen
-        name="perfil"
-        options={
-          {
-            tabBarLabel: "Bilhetes",
+        name="favoritos"
+        options={{
+          headerTitleStyle: {
+            color: theme(currentTheme).colors.text,
+            textTransform: 'capitalize',
+            fontSize: 22,
+            fontFamily: "Inter_700Bold",
           }
-        }
+        }}
       />
+
       <Tabs.Screen
         name="bilhetes"
         options={{
           headerTintColor: theme(currentTheme).colors.text,
-          headerTitle: "Perfil",
-          tabBarLabel: "Perfil",
-          title: "Perfil",
+          headerTitle: "Bilhetes",
+          tabBarLabel: "Bilhetes",
           headerTitleAlign: "left",
           headerTitleStyle: {
             fontWeight: "700",
@@ -48,6 +56,24 @@ export default function HomeLayout() {
           },
         }}
       />
+
+      <Tabs.Screen
+        name="perfil"
+        options={
+          {
+            tabBarLabel: "Perfil",
+            headerTitleAlign: "left",
+            title: "Meu Perfil",
+            headerTitleStyle: {
+              color: theme(currentTheme).colors.text,
+              textTransform: 'capitalize',
+              fontSize: 22,
+              fontFamily: "Inter_700Bold",
+            }
+          }
+        }
+      />
+
     </Tabs>
   );
 }
